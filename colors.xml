@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="red_50">#ffebee</color>
 	<color name="red_100">#ffcdd2</color>
@@ -261,7 +261,7 @@
 	<color name="grey_700">#616161</color>
 	<color name="grey_800">#424242</color>
 	<color name="grey_900">#212121</color>
-
+	<!-- blu grey -->
 	<color name="blue_grey_50">#eceff1</color>
 	<color name="blue_grey_100">#cfd8dc</color>
 	<color name="blue_grey_200">#b0bec5</color>
