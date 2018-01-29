@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.example.customview" 
+    xmlns:tools="http://schemas.android.com/tools"  
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" 
+    tools:context="com.example.customview.MainActivity">
+
+    <com.example.customview.LoadingDialog 
+        android:id="@+id/ld_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="#ffffff"
+        custom:topColor="@color/white"
+        custom:centerColor="@color/amber_500"
+        custom:bottomColor="@color/grey_500">
+    </com.example.customview.LoadingDialog>
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/gradient"
+        android:layout_margin="10dp"/>
+
+</RelativeLayout>
