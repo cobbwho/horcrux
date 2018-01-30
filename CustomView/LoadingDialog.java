@@ -1,5 +1,7 @@
 package com.example.customview;
 
+import java.util.Random;
+
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
@@ -27,6 +29,12 @@ public class LoadingDialog extends View {
 	private int radius = 1;//半径
 	private float scale = (float) 2.2;//顶部半径放大尺寸
 	
+	//数据刷新监听,json可为数据
+	public interface OnFlashListener{
+		void onFlash(String json);
+	}
+	private OnFlashListener mOnFlashListener;
+	
 	private boolean isAnimate = false;//是否开始动画
 	private int duration = 2000;//动画持续时间
 	private int startAngle = 135;//开始角度
@@ -52,6 +60,7 @@ public class LoadingDialog extends View {
 				centerColor));
 		setTopColor(
 				array.getColor(R.styleable.CustomView_topColor, topColor));
+		array.recycle();
 	}
 
 	public LoadingDialog(Context context, AttributeSet attrs,
@@ -98,12 +107,23 @@ public class LoadingDialog extends View {
 		return dimension;
 	}
 
+	public void setOnFlashListener(OnFlashListener listener){
+		mOnFlashListener = listener;
+	}
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			isAnimate = false;
-			startAnimation();
+			mOnFlashListener.onFlash("update");
+			//load a new endAngle from net
+			Random random = new Random();
+			endAngle = random.nextInt(270);
+			Log.i("info", "endAngle:--"+endAngle);
+			if(endAngle<30 || endAngle>270)
+				endAngle = 270;
+			startAnimation(endAngle);
 		}
 		return super.onTouchEvent(event);
 	}
@@ -117,7 +137,7 @@ public class LoadingDialog extends View {
 			onDrawBottom(canvas, bottomColor);
 			onDrawCenter(canvas, centerColor);
 			onDrawTop(canvas, topColor);
-			startAnimation();
+			startAnimation(endAngle);
 		} else {
 			onDrawBottom(canvas, bottomColor);
 			onDrawCenter(canvas, centerColor);
@@ -171,7 +191,7 @@ public class LoadingDialog extends View {
 	/**
 	 * 动画设置
 	 */
-	protected void startAnimation() {
+	protected void startAnimation(int endAngle) {
 		ValueAnimator animator = ValueAnimator.ofInt(0,endAngle + 20,
 				endAngle - 20, endAngle);	//属性动画，针对值的变化
 		animator.addUpdateListener(new AnimatorUpdateListener() {
