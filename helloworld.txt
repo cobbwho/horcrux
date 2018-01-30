@@ -1,3 +1,5 @@
-git add file	添加文件到暂存区
-git commit -m " " 提交
+git add file
+git commit -m " "
 git push git@github.com:cobbwho/horcrux.git
+git config --global alias.st status	//st=status;ct=commit;horcrux=git@github.com:cobbwho/horcrux.git
+git checkout --file
