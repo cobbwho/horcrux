@@ -2,6 +2,6 @@ git add file
 git commit -m " "
 git push git@github.com:cobbwho/horcrux.git
 git config --global alias.st status
-git config --global alias.login "!eval $(ssh-agent); ssh-add"
+git config --global alias.doublecmd "!cmd1 && cmd2"
 	//st=status;ct=commit;horcrux=git@github.com:cobbwho/horcrux.git
 git checkout --file
